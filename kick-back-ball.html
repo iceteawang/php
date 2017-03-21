@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>回弹小球</title>
+        <meta charset='UTF-8'/>
+        <style>
+            *{
+                margin:0;
+                padding:0;
+            }
+            #box{
+                width:200px;
+                height:200px;
+                border-radius:50%;
+                box-shadow:inset 0 0 10px 0px red;
+                position:absolute;
+                text-align:center; 
+                top:200px;
+                left:600px;
+            }
+                    
+            img{
+                width:100px;
+                height:100px;
+                position:relative; 
+                top:50px;
+                border-radius:50px;
+                opacity:0.5; 
+            }
+        </style>
+    </head>
+    <body>
+        <div id='box'></div>        
+    </body>
+    <script>
+        
+        var box = document.getElementById('box');
+        document.onclick = function(){
+
+            // 横向速度
+            var x = 20;
+
+            // 纵向速度
+            var y = 20;
+
+            // 1.获取可视区域的宽
+            var vw = document.documentElement.clientWidth ||  document.body.clientWidth;
+            
+            var vh = document.documentElement.clientHeight ||  document.body.clientHeight;
+          
+            setInterval(function(){
+
+                if(box.offsetLeft > vw - box.offsetWidth || box.offsetLeft < 0){
+                    x = -x;
+                }
+
+                if(box.offsetTop > vh - box.offsetHeight || box.offsetTop < 0){
+                    y = -y;
+                }
+
+                box.style.left = box.offsetLeft + x + 'px';
+
+                box.style.top = box.offsetTop + y + 'px';
+
+            },50);
+        }
+        
+    </script>
+</html>
